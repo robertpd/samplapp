@@ -29,19 +29,19 @@ describe User do
   end
 
   describe "when email is not present" do
-    before { @email = " "}
+    before { @user.email = " "}
     it { should_not be_valid }
   end
   describe "when name is too long" do
-    before { @name = "a"*51}
+    before { @user.name = "a"*51}
     it { should_not be_valid }
   end
   describe "when email format is invalid" do
     it "should be invalid" do
-      address = %w[user@foo,com +@poo.com]
+      address = %w[user@foo,com user_at_foo.org example.user@foo.]
       address.each do |valid_address|
         @user.email = valid_address
-        @user.should be_valid
+        @user.should_not be_valid
       end
     end
   end
@@ -84,7 +84,7 @@ describe User do
     end
 
     describe "with invalid password" do
-      let(:user_for_invalid_password) { found_user.authenticate(@user.password)}
+      let(:user_for_invalid_password) { found_user.authenticate("invalid")}
       
       it {should_not == user_for_invalid_password }
       specify { user_for_invalid_password.should be_false }

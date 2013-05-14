@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    render 'new' # this is the default action and is not needed explicitly
   end
 
   def create

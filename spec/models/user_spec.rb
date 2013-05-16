@@ -25,10 +25,19 @@ end
   it { should respond_to(:password)}
   it { should respond_to(:password_confirmation)}
   it { should respond_to(:remember_token)}
+  it { should respond_to(:admin)}
   it { should respond_to(:authenticate)}
 
   it { should be_valid }
+  it { should_not be_admin }
 
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+    it { should be_admin}
+  end
   describe "when name is not present" do
     before { @user.name = "" }
     it { should_not be_valid }
@@ -38,10 +47,12 @@ end
     before { @user.email = " "}
     it { should_not be_valid }
   end
+
   describe "when name is too long" do
     before { @user.name = "a"*51}
     it { should_not be_valid }
   end
+
   describe "when email format is invalid" do
     it "should be invalid" do
       address = %w[user@foo,com user_at_foo.org example.user@foo.]

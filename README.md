@@ -1,3 +1,5 @@
-# Ruby on rails tutorials
+#Sample microblog app
 
-This is a sample application carefully sculpted to rock your world.
+Sample Ruby on Rails project demonstrating basic twitter-like
+functionality.
+

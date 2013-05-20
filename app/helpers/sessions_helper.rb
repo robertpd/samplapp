@@ -39,7 +39,7 @@ module SessionsHelper
   end
   
   def store_location
-    session[:redirect_to] = request.url
+    session[:return_to] = request.url
   end
 
 end

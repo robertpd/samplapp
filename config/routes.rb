@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  get "static_pages/home"
+
   resources :users do
     member do
       get :following, :followers
